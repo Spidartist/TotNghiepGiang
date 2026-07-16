@@ -1,7 +1,7 @@
 // ⚙️ Cấu hình — chỉnh sửa file này theo ý bạn
 const CONFIG = {
   // Mã bảo mật 8 số (đổi thành mã riêng của bạn)
-  securityCode: '16072026',
+  securityCode: '10030307',
 
   // Danh sách lời chúc hiện sau khi video kết thúc
   wishes: [
