@@ -3,6 +3,14 @@ const CONFIG = {
   // Mã bảo mật 8 số (đổi thành mã riêng của bạn)
   securityCode: '10030307',
 
+  // Video chúc mừng — đặt file MP4 trong assets/video/
+  // Hoặc dùng YouTube: type: 'youtube', youtubeId: 'MÃ_VIDEO_YOUTUBE'
+  video: {
+    type: 'local',
+    localSrc: 'assets/video/video.mp4',
+    youtubeId: '',
+  },
+
   // Danh sách lời chúc hiện sau khi video kết thúc
   wishes: [
     'Chúc mừng bạn đã tốt nghiệp thành công! 🎓',

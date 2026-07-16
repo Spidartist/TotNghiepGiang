@@ -7,6 +7,7 @@
   const codeInputs = document.querySelectorAll('#code-inputs input');
   const errorMsg = document.getElementById('error-msg');
   const video = document.getElementById('congrats-video');
+  const youtubePlayerEl = document.getElementById('youtube-player');
   const postVideoContent = document.getElementById('post-video-content');
   const wishesList = document.getElementById('wishes-list');
   const canvas = document.getElementById('fireworks-canvas');
@@ -14,10 +15,66 @@
 
   let fireworksRunning = false;
   let animationId = null;
+  let ytPlayer = null;
+
+  initVideo();
 
   // Kiểm tra đã đăng nhập trong session
   if (sessionStorage.getItem('graduation_unlocked') === 'true') {
     showCongrats();
+  }
+
+  function initVideo() {
+    const { type, localSrc, youtubeId } = CONFIG.video;
+
+    if (type === 'youtube' && youtubeId) {
+      video.classList.add('hidden');
+      youtubePlayerEl.classList.remove('hidden');
+      loadYouTubePlayer(youtubeId);
+      return;
+    }
+
+    video.classList.remove('hidden');
+    youtubePlayerEl.classList.add('hidden');
+    video.src = localSrc;
+    video.load();
+  }
+
+  function loadYouTubePlayer(videoId) {
+    const id = extractYouTubeId(videoId);
+    if (!id) {
+      showVideoError('Mã YouTube không hợp lệ trong config.js');
+      return;
+    }
+
+    if (window.YT && window.YT.Player) {
+      createYouTubePlayer(id);
+      return;
+    }
+
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    window.onYouTubeIframeAPIReady = () => createYouTubePlayer(id);
+    document.head.appendChild(tag);
+  }
+
+  function createYouTubePlayer(videoId) {
+    ytPlayer = new YT.Player('youtube-player', {
+      videoId,
+      playerVars: { rel: 0, modestbranding: 1 },
+      events: {
+        onStateChange: (event) => {
+          if (event.data === YT.PlayerState.ENDED) startCelebration();
+        },
+      },
+    });
+  }
+
+  function extractYouTubeId(value) {
+    const match = String(value).match(
+      /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/
+    );
+    return match ? match[1] : (value.length === 11 ? value : '');
   }
 
   // Xử lý nhập mã từng ô
@@ -96,15 +153,18 @@
     startCelebration();
   });
 
-  // Nếu video lỗi/không có file, vẫn cho phép bấm để xem pháo hoa
   video.addEventListener('error', () => {
-    const hint = document.querySelector('.video-hint');
-    if (hint) {
-      hint.textContent = '⚠ Chưa có video — thêm file assets/video/chuc-mung.mp4. Nhấn nút bên dưới để xem pháo hoa!';
-      hint.style.color = '#ffd700';
-    }
+    showVideoError(`Không tải được video: ${CONFIG.video.localSrc}`);
     addFallbackButton();
   });
+
+  function showVideoError(msg) {
+    const hint = document.querySelector('.video-hint');
+    if (hint) {
+      hint.textContent = `⚠ ${msg}. Nhấn nút bên dưới để xem pháo hoa!`;
+      hint.style.color = '#ffd700';
+    }
+  }
 
   function addFallbackButton() {
     if (document.getElementById('fallback-btn')) return;
