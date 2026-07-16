@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chúc Mừng Tốt Nghiệp 🎓</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Màn hình nhập mã -->
+  <div id="login-screen" class="screen active">
+    <div class="login-container">
+      <div class="cap-icon">🎓</div>
+      <h1>Chúc Mừng Tốt Nghiệp</h1>
+      <p class="subtitle">Nhập mã bảo mật 8 số để mở quà bất ngờ</p>
+      <form id="code-form">
+        <div class="code-inputs" id="code-inputs">
+          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" aria-label="Số 1">
+          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" aria-label="Số 2">
+          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" aria-label="Số 3">
+          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" aria-label="Số 4">
+          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" aria-label="Số 5">
+          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" aria-label="Số 6">
+          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" aria-label="Số 7">
+          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" aria-label="Số 8">
+        </div>
+        <p id="error-msg" class="error-msg" aria-live="polite"></p>
+        <button type="submit" class="btn-primary">Mở khóa 🎁</button>
+      </form>
+    </div>
+    <div class="floating-shapes">
+      <span>✨</span><span>🎉</span><span>⭐</span><span>🌟</span>
+    </div>
+  </div>
+
+  <!-- Trang chúc mừng -->
+  <div id="congrats-screen" class="screen">
+    <canvas id="fireworks-canvas"></canvas>
+    <div id="messages-container"></div>
+
+    <div class="congrats-content">
+      <header class="congrats-header">
+        <span class="badge">🎓 Tốt Nghiệp 2026</span>
+        <h1>Chúc Mừng Bạn!</h1>
+        <p class="tagline">Hành trình mới bắt đầu từ hôm nay ✨</p>
+      </header>
+
+      <div class="video-wrapper">
+        <video id="congrats-video" playsinline controls poster="assets/poster.svg">
+          <source src="assets/video/chuc-mung.mp4" type="video/mp4">
+          Trình duyệt của bạn không hỗ trợ video.
+        </video>
+        <p class="video-hint">▶ Nhấn play để xem lời chúc</p>
+      </div>
+
+      <div id="post-video-content" class="post-video hidden">
+        <div class="wishes-card">
+          <h2>🎊 Lời Chúc Dành Cho Bạn 🎊</h2>
+          <ul id="wishes-list"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
