@@ -13,11 +13,11 @@ const CONFIG = {
 
   // Danh sách lời chúc hiện sau khi video kết thúc
   wishes: [
-    'Chúc mừng bạn đã tốt nghiệp thành công! 🎓',
-    'Chúc bạn luôn tỏa sáng trên con đường phía trước! ✨',
-    'Thành công mới, ước mơ mới — hãy bay cao nhé! 🚀',
-    'Tự hào về những gì bạn đã đạt được! 💪',
-    'Tương lai rộng mở đang chờ đón bạn! 🌈',
-    'Chúc bạn hạnh phúc và thành công rực rỡ! 🎉',
+    'Chúc mừng Giang Thối đã tốt nghiệp Bằng Giỏi! 🎓',
+    'Nhớ Giang quá đi à ~~ ✨',
+    'Anh yêu Giangggggg',
+    'Tự hào về những gì Giang đã đạt được! 💪',
+    'Tương lai về nhà anh! 🌈',
+    'Anh tặng anh cho Giang thối há há 🎉',
   ],
 };
